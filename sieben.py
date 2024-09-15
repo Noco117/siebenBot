@@ -14,7 +14,7 @@ class SiebenClient(discord.Client):
 
     async def is_valid_status(self, channel: discord.VoiceChannel, status: str) -> bool:
         if status is None:
-            return True if "sieben" not in channel.name else False
+            return True if "sieben" not in channel.name.lower() else False
         if status in allowed_exceptions:
             return True
         for item in disallowed_status_components:
@@ -28,7 +28,7 @@ class SiebenClient(discord.Client):
                         await entry.user.send(overprivileged_member_message)
                 return False
 
-        if "sieben" in channel.name:
+        if "sieben" in channel.name.lower():
             return status in accepted_sieben_strings
 
         return True
