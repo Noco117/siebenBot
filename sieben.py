@@ -34,7 +34,6 @@ class SiebenClient(discord.Client):
         return True
 
     async def on_voice_state_update(self, member, before, after):
-        print("update")
         if after.channel is None:
             return
 
@@ -43,7 +42,6 @@ class SiebenClient(discord.Client):
 
     async def on_voice_channel_status_update(self, channel, before, after):
         if (not await self.is_valid_status(channel, after)) and channel.members:
-            print("siebened")
             await channel.set_status("sieben")
 
 
